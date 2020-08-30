@@ -6,7 +6,10 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { CountriesComponent } from './components/countries/countries.component';
+
 import { HttpClientModule } from '@angular/common/http';
+import { DashboardCardsComponent } from './components/dashboard-cards/dashboard-cards.component';
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 
 @NgModule({
   declarations: [
@@ -14,8 +17,14 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     HomeComponent,
     CountriesComponent,
+    DashboardCardsComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    Ng2GoogleChartsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -1,1 +1,84 @@
-<p>home works!</p>
+<div class="text-center p-4">
+  <h1 class="display-4">Corona Tracker</h1>
+  <hr />
+  <app-dashboard-cards
+    [totalDeaths]="totalDeaths"
+    [totalActive]="totalActive"
+    [totalConfirmed]="totalConfirmed"
+    [totalRecovered]="totalRecovered"
+  ></app-dashboard-cards>
+</div>
+<div class="ui form p-4">
+  <div class="inline fields">
+    <label for="fruit">Select Case Type:</label>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input
+          type="radio"
+          name="c"
+          value="c"
+          id="c"
+          checked=""
+          tabindex="0"
+          class="hidden"
+          #c
+          (click)="updateChart(c)"
+        />
+        <label for="c">Confirmed</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input
+          id="a"
+          type="radio"
+          name="c"
+          value="a"
+          tabindex="0"
+          class="hidden"
+          #a
+          (click)="updateChart(a)"
+        />
+        <label for="a">Active</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input
+          type="radio"
+          name="c"
+          id="d"
+          value="d"
+          tabindex="0"
+          class="hidden"
+          #d
+          (click)="updateChart(d)"
+        />
+        <label for="d">Death</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input
+          type="radio"
+          name="c"
+          id="r"
+          value="r"
+          tabindex="0"
+          class="hidden"
+          #r
+          (click)="updateChart(r)"
+        />
+        <label for="r">Recovered</label>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row p-4">
+  <div class="col">
+    <google-chart [data]="columnChart"></google-chart>
+  </div>
+  <div class="col">
+    <google-chart [data]="pieChart"></google-chart>
+  </div>
+</div>
