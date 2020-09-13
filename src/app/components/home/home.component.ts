@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataServiceService } from 'src/app/services/data-service.service';
 import { IGlobalDataSummary } from '../../models/data-list';
-import { GoogleChartInterface } from 'ng2-google-charts';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,40 +12,33 @@ export class HomeComponent implements OnInit {
   totalActive = 0;
   totalDeaths = 0;
   totalRecovered = 0;
+  datatable = [];
   globalData: IGlobalDataSummary[];
-  pieChart: GoogleChartInterface = {
-    chartType: 'PieChart',
+  loader = true;
+  chart = {
+    PieChart: 'PieChart',
+    ColumnChart: 'ColumnChart',
+    height: 500,
+    options: {
+      animation: {
+        duration: 1000,
+        easing: 'out',
+      },
+      is3D: true,
+    },
   };
-  columnChart: GoogleChartInterface = {
-    chartType: 'ColumnChart',
-  };
+
   constructor(private dataService: DataServiceService) {}
   initChart(theType: string) {
-    let datatable = [];
-    datatable.push(['Country', 'Cases']);
-
+    // this.datatable.push(['Country', 'Cases']);
+    this.datatable = [];
     this.globalData.forEach((cs) => {
-      if (theType == 'd') datatable.push([cs.country, cs.deaths]);
-      if (theType == 'c') datatable.push([cs.country, cs.confirmed]);
+      if (theType == 'd') this.datatable.push([cs.country, cs.deaths]);
+      if (theType == 'c') this.datatable.push([cs.country, cs.confirmed]);
 
-      if (theType == 'a') datatable.push([cs.country, cs.active]);
-      if (theType == 'r') datatable.push([cs.country, cs.recovered]);
+      if (theType == 'a') this.datatable.push([cs.country, cs.active]);
+      if (theType == 'r') this.datatable.push([cs.country, cs.recovered]);
     });
-
-    this.pieChart = {
-      chartType: 'PieChart',
-      dataTable: datatable,
-      options: {
-        height: 500,
-      },
-    };
-    this.columnChart = {
-      chartType: 'ColumnChart',
-      dataTable: datatable,
-      options: {
-        height: 500,
-      },
-    };
   }
 
   ngOnInit(): void {
@@ -59,8 +52,11 @@ export class HomeComponent implements OnInit {
           this.totalRecovered += item.recovered;
         }
       });
-      this.initChart('r');
+      this.initChart('c');
     });
+    setTimeout(() => {
+      this.loader = false;
+    }, 1000);
   }
   updateChart(input: HTMLInputElement) {
     this.initChart(input.value);

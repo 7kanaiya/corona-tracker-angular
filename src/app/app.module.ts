@@ -9,7 +9,7 @@ import { CountriesComponent } from './components/countries/countries.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardCardsComponent } from './components/dashboard-cards/dashboard-cards.component';
-import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    Ng2GoogleChartsModule,
+    GoogleChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

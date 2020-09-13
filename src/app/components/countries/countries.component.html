@@ -1,3 +1,6 @@
+<div class="ui inverted dimmer" [class.active]="loader">
+  <div class="ui text loader">Loading</div>
+</div>
 <div class="jumbotron bg-white text-center">
   <h1 class="display-4">Corona Tracker Country Wise</h1>
   <hr />
@@ -12,6 +15,7 @@
       id="c"
       (change)="updateValues(input.value)"
     >
+      <option disabled selected value>-- select country --</option>
       <option value="{{ con }}" *ngFor="let con of countries">
         {{ con }}
       </option>
